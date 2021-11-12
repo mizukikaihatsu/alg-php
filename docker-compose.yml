@@ -2,18 +2,18 @@ version: '3'
 services:
   nginx:
     image: nginx:1.19.1
-    container_name: alg_nginx
+    container_name: fizzbuzz_nginx
     ports:
-      - 8080:8080
+      - 8082:8080
     depends_on:
       - php
     volumes:
       - ./nginx/server.conf:/etc/nginx/conf.d/default.conf
-      - ../:/var/www/html
+      - ./src/:/var/www/html
 
   php:
     build: ./php
-    container_name: alg_php
+    container_name: fizzbuzz_php
     volumes:
-      - ../:/var/www/html
+      - ./src/:/var/www/html
       - ./php/log/:/var/log/php/
